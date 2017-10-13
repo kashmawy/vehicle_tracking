@@ -1,8 +1,6 @@
-**Vehicle Detection Project**
+### Histogram of Oriented Gradients (HOG)
 
-###Histogram of Oriented Gradients (HOG)
-
-####1. Explain how (and identify where in your code) you extracted HOG features from the training images.
+#### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
 The code for this is in get_hog_features in solution/features_extract.py, which given an image and orient, pix_per_cell, cell_per_block and feature_vec extracts the HOG features in an image.
 
@@ -21,7 +19,7 @@ These hog visualization are for images in YCrCb format for only the first channe
 3. cells per block of 2
 
 
-####2. Explain how you settled on your final choice of HOG parameters.
+#### 2. Explain how you settled on your final choice of HOG parameters.
 
 I tried various parameters for HOG. Orient of 9, pixels per cell of 4 and cells per block of 2 seems to give the best results.
 
@@ -33,7 +31,7 @@ When pixels per cell is too small (e.g. 2) it causes a much smaller area to be i
 
 Cells per block had the same behaviour as pixels per cell.
 
-####3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
+#### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
 The code for this is in solution/features_extract.py in the following methods extract_features, bin_spatial, color_hist, get_hog_features.
 The code for training the SVM is in solution/main.py.
@@ -51,9 +49,9 @@ We have 8792 vehicle images and 8968 non vehicle images.
 Off this data, 20% is reserved for testing and the rest 80% is used for training.
 
 
-###Sliding Window Search
+### Sliding Window Search
 
-####1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
+#### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
 The sliding window search is in solution/vehicle_detection.py find_cars().
 The algorithm begin by:
@@ -72,7 +70,7 @@ The algorithm begin by:
 12. If this is a car, we capture the rectangle coordinates and add it to the list of bounding boxes.
 13. We return the list of bounding boxes after we do all the iterations.
 
-####2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
 I had to tweak the parameters for HOG (orient, pixels per cell and cells per block) along with spatial bin resize size and color histogram bins.
 The HOG orient and pixels per cell particularly seemed to make the classifier more sensitive (as orient decreases and pixels decreases) or less sensitive (as orient increases and pixels increases).
@@ -89,11 +87,11 @@ The following are examples of vehicles detected in test images:
 
 ### Video Implementation
 
-####1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
-Here's a [link to my video result](https://youtu.be/hS5kO_Yvutc)
+#### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
+[![Run Video](https://img.youtube.com/vi/hS5kO_Yvutc/0.jpg)](https://youtu.be/hS5kO_Yvutc)
 
-####2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
+#### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
 The code for this can be found in image_utils.py in apply_boxes_with_heat_and_threshold and is called from main.py in detect.
 
@@ -128,9 +126,9 @@ As we can see the heatmap is very bright in areas where the car exist, and then 
 
 ---
 
-###Discussion
+### Discussion
 
-####1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
+#### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
 The main problems I faced was the following:
 
